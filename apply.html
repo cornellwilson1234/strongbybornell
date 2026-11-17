@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apply · Strong by Bornell</title>
+<meta name="description" content="Apply for the personal Strong program. 10 spots.">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<script>
+/* ===== EDIT THESE ===== */
+window.STRONG_CONFIG = {
+  // Paste your Google Apps Script web app URL here (see application/SETUP.md, step 2)
+  endpoint: "PASTE_YOUR_APPS_SCRIPT_URL_HERE",
+  price: "$___",          // e.g. "$199/month"
+  daysPerWeek: 3,
+  replyDays: 3
+};
+</script>
+<style>
+:root{--bg:#EEEDE9;--ink:#141414;--mute:#5E5C57;--gold:#9A7418;--line:#D3D0C8;--panel:#E3E1DB;--btn:#141414;--btnt:#EEEDE9;--err:#B3261E;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#121212;--ink:#EDEAE2;--mute:#A09D95;--gold:#D2AC55;--line:#2E2E2C;--panel:#1C1C1B;--btn:#D2AC55;--btnt:#121212;--err:#F2B8B5}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#121212;--ink:#EDEAE2;--mute:#A09D95;--gold:#D2AC55;--line:#2E2E2C;--panel:#1C1C1B;--btn:#D2AC55;--btnt:#121212;--err:#F2B8B5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55}
+.w{max-width:640px;margin:0 auto;padding-block:0;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+header{padding:48px 0 30px;border-bottom:1px solid var(--line)}
+.by{color:var(--gold);font-weight:700;margin:0 0 12px;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+h1{font-stretch:125%;font-weight:900;font-size:clamp(40px,11vw,72px);line-height:.92;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+p{margin:0 0 14px;max-width:62ch}
+.lede{font-size:20px;line-height:1.4;font-weight:600}
+.mute{color:var(--mute);font-size:15px}
+fieldset{border:0;margin:0;padding:34px 0 10px;border-bottom:1px solid var(--line)}
+legend{font-stretch:112%;font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);padding:0;margin-bottom:18px}
+.q{margin:0 0 24px}
+.q>label,.q>.lbl{display:flex;gap:10px;font-weight:700;font-size:17px;line-height:1.35;margin-bottom:9px}
+.n{color:var(--gold);font-weight:800;min-width:1.4em;font-variant-numeric:tabular-nums}
+input[type=text],input[type=email],input[type=tel],input[type=number],textarea,select{width:100%;font:inherit;font-size:16px;padding:12px 13px;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:4px}
+textarea{min-height:96px;resize:vertical}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.row label{font-size:13px;font-weight:600;color:var(--mute);display:block;margin-bottom:4px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chips span{display:inline-block;padding:10px 15px;border:1px solid var(--line);background:var(--panel);border-radius:4px;font-size:16px;font-weight:600}
+.chips input:checked+span{background:var(--btn);color:var(--btnt);border-color:var(--btn)}
+.chips input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:16px;margin:24px 0 8px;font-weight:600}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--gold);flex:none}
+.btn{display:inline-block;background:var(--btn);color:var(--btnt);font-weight:700;text-decoration:none;padding:15px 26px;border-radius:4px;font-size:17px;border:0;cursor:pointer;font-family:inherit;margin-top:18px}
+.btn[disabled]{opacity:.6;cursor:wait}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.err{color:var(--err);font-size:15px;font-weight:600;margin-top:12px;min-height:1.2em}
+.q.bad input,.q.bad textarea,.q.bad select,.q.bad .chips span{border-color:var(--err)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.done{padding:60px 0 80px}
+.done h2{font-stretch:125%;font-weight:900;font-size:clamp(36px,9vw,56px);line-height:.95;margin:0 0 16px}
+footer{padding:30px 0 50px}
+@media (max-width:480px){.row{grid-template-columns:1fr 1fr}.row>div:first-child{grid-column:1/-1}.two{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<header>
+  <p class="by">Strong by Bornell · Personal program</p>
+  <h1>You just took the first step.</h1>
+  <p class="lede">Most people never do.</p>
+  <p>I only take 10 people into my personal Strong program, so I'm selective. You get a plan built around your goal, schedule and equipment, calories and macros set for you, and a check-in from me every week.</p>
+  <p><strong>This is a paid program, and I only work with people who are serious.</strong> Answer these so I can see if we're a fit.</p>
+</header>
+
+<form id="app" novalidate>
+  <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <input type="hidden" id="source" name="source">
+  <input type="hidden" id="ig_handle_hidden" name="ig_hidden">
+
+  <fieldset>
+    <legend>Your details</legend>
+    <div class="two">
+      <div class="q"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+      <div class="q"><label for="instagram">Instagram handle</label><input id="instagram" name="instagram" type="text" placeholder="@yourname" autocomplete="off"></div>
+    </div>
+    <div class="two">
+      <div class="q"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="q"><label for="phone">Phone <span class="mute">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>The fit</legend>
+    <div class="q" data-req="goal"><div class="lbl"><span class="n">1</span>What's your main goal?</div>
+      <div class="chips" role="radiogroup" aria-label="Main goal">
+        <label><input type="radio" name="goal" value="Lose fat"><span>Lose fat</span></label>
+        <label><input type="radio" name="goal" value="Build muscle"><span>Build muscle</span></label>
+        <label><input type="radio" name="goal" value="Both"><span>Both</span></label>
+      </div></div>
+    <div class="q"><label for="why"><span class="n">2</span>Why does it matter to you right now?</label><textarea id="why" name="why" required></textarea></div>
+    <div class="q"><label for="tried"><span class="n">3</span>What have you tried before, and what got in the way?</label><textarea id="tried" name="tried" required></textarea></div>
+    <div class="q"><label for="sixmonths"><span class="n">4</span>If nothing changes, where do you see yourself in 6 months?</label><textarea id="sixmonths" name="sixmonths" required></textarea></div>
+    <div class="q" data-req="ready"><div class="lbl"><span class="n">5</span>Are you ready to invest in yourself to make this happen?</div>
+      <div class="chips" role="radiogroup" aria-label="Ready to invest">
+        <label><input type="radio" name="ready" value="Yes"><span>Yes</span></label>
+        <label><input type="radio" name="ready" value="No"><span>No</span></label>
+      </div></div>
+    <div class="q" data-req="price"><div class="lbl"><span class="n">6</span><span>The program is <b class="cfg-price">$___</b>. Does that work for you, or do you need to know more first?</span></div>
+      <div class="chips" role="radiogroup" aria-label="Price">
+        <label><input type="radio" name="price" value="Works for me"><span>Works for me</span></label>
+        <label><input type="radio" name="price" value="Need to know more"><span>I need to know more first</span></label>
+        <label><input type="radio" name="price" value="Doesn't work"><span>Doesn't work for me</span></label>
+      </div></div>
+    <div class="q" data-req="commit"><div class="lbl"><span class="n">7</span><span>Can you commit to training <b class="cfg-days">3</b> days a week and checking in with me weekly?</span></div>
+      <div class="chips" role="radiogroup" aria-label="Commitment">
+        <label><input type="radio" name="commit" value="Yes"><span>Yes</span></label>
+        <label><input type="radio" name="commit" value="No"><span>No</span></label>
+        <label><input type="radio" name="commit" value="Not sure"><span>Not sure</span></label>
+      </div></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>About you</legend>
+    <div class="q"><div class="lbl"><span class="n">8</span>Age, height and current weight</div>
+      <div class="row">
+        <div><label for="age">Age</label><input id="age" name="age" type="number" inputmode="numeric" min="18" max="99" required></div>
+        <div><label for="height">Height</label><input id="height" name="height" type="text" placeholder="5'10&quot;" required></div>
+        <div><label for="weight">Weight</label><input id="weight" name="weight" type="text" placeholder="185 lb" required></div>
+      </div></div>
+    <div class="q" data-req="equipment"><div class="lbl"><span class="n">9</span>Your equipment</div>
+      <div class="chips" role="radiogroup" aria-label="Equipment">
+        <label><input type="radio" name="equipment" value="Apartment gym"><span>Apartment gym</span></label>
+        <label><input type="radio" name="equipment" value="Full gym"><span>Full gym</span></label>
+        <label><input type="radio" name="equipment" value="Home"><span>Home</span></label>
+      </div></div>
+    <div class="q"><label for="experience"><span class="n">10</span>Training experience</label><textarea id="experience" name="experience" placeholder="How long you've trained, what you do now" required></textarea></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>To build this safely</legend>
+    <div class="q"><label for="injuries"><span class="n">11</span>Any injuries or movements that cause pain?</label><textarea id="injuries" name="injuries" placeholder="Write &quot;None&quot; if none" required></textarea></div>
+    <div class="q"><label for="medical"><span class="n">12</span>Any medical conditions or medications I should know about?</label><textarea id="medical" name="medical" placeholder="Write &quot;None&quot; if none" required></textarea></div>
+    <div class="q" data-req="doctor"><div class="lbl"><span class="n">13</span>Have you been cleared by a doctor to exercise?</div>
+      <div class="chips" role="radiogroup" aria-label="Doctor clearance">
+        <label><input type="radio" name="doctor" value="Yes"><span>Yes</span></label>
+        <label><input type="radio" name="doctor" value="No"><span>No</span></label>
+        <label><input type="radio" name="doctor" value="Not yet"><span>Not yet</span></label>
+      </div></div>
+  </fieldset>
+
+  <label class="check" for="adult"><input type="checkbox" id="adult" name="adult" value="Yes" required> I'm 18 or older.</label>
+  <button class="btn" id="submit" type="submit">Send my application</button>
+  <div class="err" id="err" role="alert"></div>
+  <p class="mute" style="margin-top:18px">I read every application personally and reply within <span class="cfg-reply">3</span> days. 18 and over only.</p>
+</form>
+
+<section class="done" id="done" hidden>
+  <p class="by">Application received</p>
+  <h2>Got it. I'll read this myself.</h2>
+  <p>You'll hear from me within <span class="cfg-reply">3</span> days. Keep an eye on your DMs and email.</p>
+</section>
+
+<footer><p class="mute"><a href="index.html" style="color:inherit">Strong by Bornell</a></p></footer>
+</div>
+
+<script>
+(function(){
+  var C = window.STRONG_CONFIG, f = document.getElementById('app'), err = document.getElementById('err');
+  document.querySelectorAll('.cfg-price').forEach(function(e){e.textContent=C.price});
+  document.querySelectorAll('.cfg-days').forEach(function(e){e.textContent=C.daysPerWeek});
+  document.querySelectorAll('.cfg-reply').forEach(function(e){e.textContent=C.replyDays});
+
+  // Prefill from link, e.g. apply.html?name=Sam&ig=samlifts&src=manychat
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('name')) f.elements['name'].value = qs.get('name');
+  if (qs.get('ig')) f.instagram.value = '@' + qs.get('ig').replace(/^@/,'');
+  if (qs.get('email')) f.email.value = qs.get('email');
+  f.source.value = qs.get('src') || 'website';
+  f.ig_hidden.value = qs.get('ig') || '';
+
+  f.addEventListener('input', function(e){ var q=e.target.closest('.q'); if(q) q.classList.remove('bad'); });
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault(); err.textContent='';
+    var first=null;
+    f.querySelectorAll('.q').forEach(function(q){q.classList.remove('bad')});
+    f.querySelectorAll('[required]').forEach(function(el){
+      var ok = el.type==='checkbox' ? el.checked : el.value.trim()!=='' && el.checkValidity();
+      if(!ok){ var q=el.closest('.q'); if(q) q.classList.add('bad'); first=first||el; }
+    });
+    f.querySelectorAll('[data-req]').forEach(function(q){
+      if(!f.querySelector('input[name="'+q.dataset.req+'"]:checked')){ q.classList.add('bad'); first=first||q.querySelector('input'); }
+    });
+    if (f.age.value && +f.age.value < 18){ err.textContent='This program is for people 18 and over.'; f.age.focus(); return; }
+    if (first){ err.textContent='Please answer the highlighted questions.'; first.focus(); return; }
+    if (f.website.value) { showDone(); return; } // bot
+    if (!C.endpoint || C.endpoint.indexOf('PASTE_')===0){ err.textContent='This form is not connected yet. Please DM me instead.'; return; }
+
+    var btn=document.getElementById('submit'); btn.disabled=true; btn.textContent='Sending…';
+    var body=new URLSearchParams(new FormData(f));
+    body.set('priceShown', C.price);
+    fetch(C.endpoint,{method:'POST',mode:'no-cors',body:body})
+      .then(showDone)
+      .catch(function(){ btn.disabled=false; btn.textContent='Send my application'; err.textContent='That didn\'t send. Check your connection and try again.'; });
+  });
+  function showDone(){ f.hidden=true; document.getElementById('done').hidden=false; window.scrollTo(0,0); }
+})();
+</script>
+</body>
+</html>
