@@ -12,6 +12,7 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 :root[data-theme="dark"]{color-scheme:dark;--bg:#121212;--ink:#EDEAE2;--mute:#A09D95;--gold:#D2AC55;--line:#2E2E2C;--panel:#1C1C1B;--btn:#D2AC55;--btnt:#121212}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55}
 .w{max-width:680px;margin:0 auto;padding:0 22px}
 header.hero{padding:56px 0 40px;border-bottom:1px solid var(--line)}
@@ -43,22 +44,35 @@ input,select{width:100%;font:inherit;font-size:16px;padding:11px 12px;background
 table{border-collapse:collapse;width:100%;font-size:15px;margin-bottom:14px}
 td,th{text-align:left;padding:9px 8px 9px 0;border-top:1px solid var(--line);vertical-align:top}th{font-weight:700;width:34%}
 .apply{background:var(--panel);margin:40px -22px 0;padding:36px 22px 44px}
-.grab{margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px}
-.grab h2{font-size:22px;margin-bottom:6px}
-.grab form{display:grid;gap:12px}
-.grab .btn{width:100%;text-align:center}
-.small{font-size:14px;color:var(--mute);margin:0}
-.toapply{display:inline-block;margin-top:16px;font-weight:700;color:var(--ink)}
-.toapply span{color:var(--gold)}
-.ok{background:var(--panel);border-left:4px solid var(--gold);padding:14px 16px;margin-top:6px}
-.ok p{margin:0}
-.lock{background:var(--panel);padding:22px 20px;border-radius:6px;text-align:left}
-.lock ul{margin-bottom:16px}
+.grab{--c-bg:#141414;--c-fg:#EEEDE9;--c-gold:#D2AC55;margin-top:4px;background:var(--c-bg);color:var(--c-fg);border:1px solid var(--line);border-radius:10px;padding:22px 20px 20px}
+.grab h2{font-size:24px;margin:0 0 4px;color:var(--c-fg)}
+.grab .sub{margin:0 0 18px;font-size:15px;opacity:.75}
+.grab form{display:grid;gap:14px}
+.grab .q{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:.7;margin:0 0 8px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tiles label{position:relative;margin:0;cursor:pointer}
+.tiles input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer}
+.tiles span{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:8px 6px;border-radius:6px;border:1.5px solid color-mix(in srgb,var(--c-fg) 25%,transparent);font-weight:700;font-size:15px;line-height:1.2}
+.tiles input:checked+span{background:var(--c-gold);border-color:var(--c-gold);color:var(--c-bg)}
+.tiles input:focus-visible+span{outline:3px solid var(--c-gold);outline-offset:2px}
+.grab input[type=email]{background:var(--c-fg);color:#141414;border:0;height:52px;border-radius:6px}
+.grab .go{width:100%;background:var(--c-gold);color:var(--c-bg);height:54px;border-radius:6px;font-size:17px;margin:0}
+.grab .fine{font-size:13px;opacity:.6;margin:0;text-align:center}
+.err{color:#F2B8B5;font-size:14px;font-weight:600;margin:0}
+.err:empty{display:none}
+.ok{display:flex;gap:12px;align-items:center}
+.ok b{display:block;font-size:20px;color:var(--c-fg)}
+.ok p{margin:0;opacity:.8;font-size:15px}
+.ok i{flex:none;width:36px;height:36px;border-radius:50%;background:var(--c-gold);color:var(--c-bg);display:grid;place-items:center;font-style:normal;font-weight:900}
+.toapply{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;padding:14px 4px 0;text-decoration:none;color:var(--ink);font-size:15px}
+.toapply b{color:var(--gold);white-space:nowrap}
+.locked{position:relative}
+.locked .preview{filter:blur(6px);opacity:.5;pointer-events:none;user-select:none;max-height:300px;overflow:hidden}
+.locked .gate{position:absolute;inset:auto 0 0 0;top:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;background:linear-gradient(to bottom,transparent,var(--bg) 45%)}
+.locked .gate p{margin:0;font-weight:700;font-size:18px}
+.gate{display:none}
 .sw{display:none}
 body[data-setup="apt"] .sw.apt,body[data-setup="gym"] .sw.gym,body[data-setup="home"] .sw.home{display:inline}
-.err{color:#B3261E;font-size:14px;font-weight:600;margin:0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#F2B8B5}}
-:root[data-theme="dark"] .err{color:#F2B8B5}
 footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 @media (prefers-reduced-motion:no-preference){header.hero h1{animation:rise .7s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
 </style>
@@ -70,18 +84,22 @@ footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 <h1>STRONG</h1>
 <p class="lede">A free 3-day plan to start building muscle, with a way to track it and a way to figure out how much to eat.</p>
 <div class="grab" id="get">
-<h2>Get your free plan</h2>
-<p class="small" style="margin-bottom:14px">Pick where you train and I’ll set up the plan for your equipment.</p>
 <form id="signup" novalidate>
-<div><label for="setup">Where do you train?</label><select id="setup" required><option value="">Choose one</option><option value="apt">Apartment gym</option><option value="gym">Full gym</option><option value="home">Home</option></select></div>
-<div><label for="em">Your email</label><input id="em" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required></div>
+<div><h2>Get your free plan</h2><p class="sub">Set up for the equipment you have.</p></div>
+<div><p class="q" id="wq">Where do you train?</p>
+<div class="tiles" role="radiogroup" aria-labelledby="wq">
+<label><input type="radio" name="setup" value="apt"><span>Apartment gym</span></label>
+<label><input type="radio" name="setup" value="gym"><span>Full gym</span></label>
+<label><input type="radio" name="setup" value="home"><span>Home</span></label>
+</div></div>
+<input id="em" type="email" autocomplete="email" inputmode="email" placeholder="Your email" aria-label="Your email" required>
 <p class="err" id="sErr" role="alert"></p>
-<button class="btn" type="submit" id="sBtn">Get my free plan</button>
-<p class="small">Free. I’ll also send you tips. Unsubscribe anytime.</p>
+<button class="btn go" type="submit" id="sBtn">Send me my plan</button>
+<p class="fine">Free. Unsubscribe anytime.</p>
 </form>
-<div class="ok" id="sOk" hidden><p><b>You’re in.</b> Your <span class="pname">apartment gym</span> plan is below.</p></div>
+<div class="ok" id="sOk" hidden><i>✓</i><div><b>You’re in.</b><p>Your <span class="pname">apartment gym</span> plan is right below.</p></div></div>
 </div>
-<a class="toapply" href="https://forms.gle/cX56DHgS1UnQ3DgS8" target="_blank" rel="noopener">Want me to build it for you? <span>Apply for a personal plan →</span></a>
+<a class="toapply" href="https://forms.gle/cX56DHgS1UnQ3DgS8" target="_blank" rel="noopener">Want me to build it for you? <b>Apply →</b></a>
 </header>
 
 <section id="start">
@@ -96,14 +114,9 @@ footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 </section>
 
 <section id="plan">
-<div class="lock" id="lock">
-<h2>Your three days</h2>
-<p>Push, pull and legs, with every exercise set up for your equipment.</p>
-<ul><li><b>Push:</b> chest, shoulders, triceps</li><li><b>Pull:</b> back, rear delts, biceps</li><li><b>Legs:</b> quads, hamstrings, glutes, calves</li></ul>
-<a class="btn" href="#get">Unlock my plan</a>
-</div>
-<div id="days" hidden>
-<h2>Your <span class="pname">apartment gym</span> plan</h2>
+<h2 id="ptitle">Your three days</h2>
+<div id="days" class="locked">
+<div class="preview" id="pv">
 <p>Train Monday, Wednesday and Friday, or any three days with a rest day between them. Warm up for 5 minutes with easy cardio, a few arm circles, bodyweight squats and glute bridges, then do 1 or 2 light sets of your first lift.</p>
 
 <details open><summary>Push <span>chest, shoulders, triceps</span></summary><div>
@@ -131,6 +144,8 @@ footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 </div></details>
 
 <p style="margin-top:20px"><b>How to add weight.</b> Each lift has a rep range. When you hit the top of the range on every set, go heavier next time. For the first two weeks, stop with 2 or 3 reps left in the tank so you can learn the movements. After that, stop 1 or 2 reps short on the big lifts. Rest 2 to 3 minutes between big lifts and about a minute between small ones.</p>
+</div>
+<div class="gate" id="gate"><p>Your plan is ready.</p><a class="btn" href="#get">Unlock it free</a></div>
 </div>
 </section>
 
@@ -182,13 +197,15 @@ var g=function(i){return document.getElementById(i)};
 function unlock(k){
   document.body.setAttribute("data-setup",k);
   document.querySelectorAll(".pname").forEach(function(e){e.textContent=NAMES[k]});
-  g("lock").hidden=true;g("days").hidden=false;g("signup").hidden=true;g("sOk").hidden=false;
+  g("ptitle").textContent="Your "+NAMES[k]+" plan";
+  g("days").classList.remove("locked");
+  g("signup").hidden=true;g("sOk").hidden=false;
 }
 try{var saved=localStorage.getItem("strongSetup");if(NAMES[saved])unlock(saved)}catch(e){}
 g("signup").addEventListener("submit",function(ev){
   ev.preventDefault();
-  var k=g("setup").value,em=g("em").value.trim(),err=g("sErr");err.textContent="";
-  if(!k){err.textContent="Pick where you train.";g("setup").focus();return}
+  var c=document.querySelector("input[name=setup]:checked"),k=c?c.value:"",em=g("em").value.trim(),err=g("sErr");err.textContent="";
+  if(!k){err.textContent="Pick where you train.";return}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){err.textContent="Enter a real email so I can send it to you.";g("em").focus();return}
   if(SIGNUP_FORM.action){
     var b=new URLSearchParams();b.set(SIGNUP_FORM.emailEntry,em);b.set(SIGNUP_FORM.setupEntry,LABEL[k]);
@@ -196,7 +213,7 @@ g("signup").addEventListener("submit",function(ev){
   }
   try{localStorage.setItem("strongSetup",k)}catch(e){}
   unlock(k);
-  g("plan").scrollIntoView({behavior:"smooth",block:"start"});
+  setTimeout(function(){g("plan").scrollIntoView({behavior:"smooth",block:"start"})},700);
 });
 })();
 (function(){
