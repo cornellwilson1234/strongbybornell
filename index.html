@@ -15,7 +15,7 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55}
 .w{max-width:680px;margin:0 auto;padding:0 22px}
 header.hero{padding:56px 0 40px;border-bottom:1px solid var(--line)}
-h1{font-stretch:125%;font-weight:900;font-size:clamp(64px,22vw,150px);line-height:.86;letter-spacing:-.02em;margin:0 0 22px}
+h1{font-stretch:125%;font-weight:900;font-size:clamp(48px,15vw,150px);line-height:.86;letter-spacing:-.02em;margin:0 0 22px}
 .by{color:var(--gold);font-weight:700;margin:0 0 14px}
 .lede{font-size:21px;line-height:1.4;max-width:30ch;margin:0 0 26px}
 .btn{display:inline-block;background:var(--btn);color:var(--btnt);font-weight:700;text-decoration:none;padding:14px 22px;border-radius:4px;font-size:16px;border:0;cursor:pointer;font-family:inherit}
@@ -43,6 +43,22 @@ input,select{width:100%;font:inherit;font-size:16px;padding:11px 12px;background
 table{border-collapse:collapse;width:100%;font-size:15px;margin-bottom:14px}
 td,th{text-align:left;padding:9px 8px 9px 0;border-top:1px solid var(--line);vertical-align:top}th{font-weight:700;width:34%}
 .apply{background:var(--panel);margin:40px -22px 0;padding:36px 22px 44px}
+.grab{margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px}
+.grab h2{font-size:22px;margin-bottom:6px}
+.grab form{display:grid;gap:12px}
+.grab .btn{width:100%;text-align:center}
+.small{font-size:14px;color:var(--mute);margin:0}
+.toapply{display:inline-block;margin-top:16px;font-weight:700;color:var(--ink)}
+.toapply span{color:var(--gold)}
+.ok{background:var(--panel);border-left:4px solid var(--gold);padding:14px 16px;margin-top:6px}
+.ok p{margin:0}
+.lock{background:var(--panel);padding:22px 20px;border-radius:6px;text-align:left}
+.lock ul{margin-bottom:16px}
+.sw{display:none}
+body[data-setup="apt"] .sw.apt,body[data-setup="gym"] .sw.gym,body[data-setup="home"] .sw.home{display:inline}
+.err{color:#B3261E;font-size:14px;font-weight:600;margin:0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#F2B8B5}}
+:root[data-theme="dark"] .err{color:#F2B8B5}
 footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 @media (prefers-reduced-motion:no-preference){header.hero h1{animation:rise .7s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}}
 </style>
@@ -53,7 +69,19 @@ footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 <p class="by">by Bornell</p>
 <h1>STRONG</h1>
 <p class="lede">A free 3-day plan to start building muscle, with a way to track it and a way to figure out how much to eat.</p>
-<a class="btn" href="#start">Get the plan</a>
+<div class="grab" id="get">
+<h2>Get your free plan</h2>
+<p class="small" style="margin-bottom:14px">Pick where you train and I’ll set up the plan for your equipment.</p>
+<form id="signup" novalidate>
+<div><label for="setup">Where do you train?</label><select id="setup" required><option value="">Choose one</option><option value="apt">Apartment gym</option><option value="gym">Full gym</option><option value="home">Home</option></select></div>
+<div><label for="em">Your email</label><input id="em" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com" required></div>
+<p class="err" id="sErr" role="alert"></p>
+<button class="btn" type="submit" id="sBtn">Get my free plan</button>
+<p class="small">Free. I’ll also send you tips. Unsubscribe anytime.</p>
+</form>
+<div class="ok" id="sOk" hidden><p><b>You’re in.</b> Your <span class="pname">apartment gym</span> plan is below.</p></div>
+</div>
+<a class="toapply" href="https://forms.gle/cX56DHgS1UnQ3DgS8" target="_blank" rel="noopener">Want me to build it for you? <span>Apply for a personal plan →</span></a>
 </header>
 
 <section id="start">
@@ -64,38 +92,46 @@ footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 <li>A weigh-in and photo schedule so you can see what’s working.</li>
 <li>A calculator for your starting calories and protein.</li>
 </ul>
-<p class="mute">Want me to build it around you? A limited number of people get a personal plan and weekly check-ins. The sign-up is at the bottom.</p>
+<p class="mute">Want me to build it around you? A limited number of people get a personal plan and weekly check-ins. <a href="https://forms.gle/cX56DHgS1UnQ3DgS8" target="_blank" rel="noopener" style="color:inherit;font-weight:700">Apply here</a>.</p>
 </section>
 
-<section>
+<section id="plan">
+<div class="lock" id="lock">
 <h2>Your three days</h2>
+<p>Push, pull and legs, with every exercise set up for your equipment.</p>
+<ul><li><b>Push:</b> chest, shoulders, triceps</li><li><b>Pull:</b> back, rear delts, biceps</li><li><b>Legs:</b> quads, hamstrings, glutes, calves</li></ul>
+<a class="btn" href="#get">Unlock my plan</a>
+</div>
+<div id="days" hidden>
+<h2>Your <span class="pname">apartment gym</span> plan</h2>
 <p>Train Monday, Wednesday and Friday, or any three days with a rest day between them. Warm up for 5 minutes with easy cardio, a few arm circles, bodyweight squats and glute bridges, then do 1 or 2 light sets of your first lift.</p>
 
 <details open><summary>Push <span>chest, shoulders, triceps</span></summary><div>
-<div class="ex"><b>Incline DB press</b><i>3 x 6-10</i><small>Low incline, lower for 2 seconds. Gym swap: incline machine or barbell.</small></div>
-<div class="ex"><b>Flat DB press</b><i>3 x 8-10</i><small>Elbows about 45 degrees from your body. Gym swap: chest press machine.</small></div>
+<div class="ex"><b>Incline DB press</b><i>3 x 6-10</i><small>Low incline, lower for 2 seconds.<span class="sw gym"> Gym swap: incline machine or barbell.</span><span class="sw home"> Home: prop a bench or use the floor press.</span></small></div>
+<div class="ex"><b>Flat DB press</b><i>3 x 8-10</i><small>Elbows about 45 degrees from your body.<span class="sw gym"> Gym swap: chest press machine.</span><span class="sw home"> Home: push-ups work too.</span></small></div>
 <div class="ex"><b>Seated DB shoulder press</b><i>3 x 8-10</i><small>Ribs down, don’t arch.</small></div>
-<div class="ex"><b>Lateral raise</b><i>3 x 12-15</i><small>Lead with your elbows. Gym swap: cable.</small></div>
-<div class="ex"><b>Triceps pushdown</b><i>3 x 10-15</i><small>Apartment swap: band pushdown or overhead DB extension.</small></div>
+<div class="ex"><b>Lateral raise</b><i>3 x 12-15</i><small>Lead with your elbows.<span class="sw gym"> Gym swap: cable.</span></small></div>
+<div class="ex"><b>Triceps pushdown</b><i>3 x 10-15</i><small><span class="sw apt home">Swap: band pushdown or overhead DB extension.</span><span class="sw gym">Use the cable station.</span></small></div>
 </div></details>
 
 <details><summary>Pull <span>back, rear delts, biceps</span></summary><div>
-<div class="ex"><b>Lat pulldown</b><i>3 x 8-10</i><small>Pull your elbows to your hips and pause. Apartment swap: assisted pull-up or bands.</small></div>
-<div class="ex"><b>One-arm DB row</b><i>3 x 8-10 each</i><small>Pull to your hip, don’t twist. Gym swap: cable row.</small></div>
+<div class="ex"><b>Lat pulldown</b><i>3 x 8-10</i><small>Pull your elbows to your hips and pause.<span class="sw apt"> Apartment swap: assisted pull-up or bands.</span><span class="sw home"> Home: band pulldown or a doorway pull-up bar.</span></small></div>
+<div class="ex"><b>One-arm DB row</b><i>3 x 8-10 each</i><small>Pull to your hip, don’t twist.<span class="sw gym"> Gym swap: cable row.</span></small></div>
 <div class="ex"><b>Rear-delt fly</b><i>3 x 12-15</i><small>Squeeze the back of the shoulder.</small></div>
 <div class="ex"><b>Incline DB curl</b><i>3 x 10-12</i><small>Stretch fully at the bottom.</small></div>
 <div class="ex"><b>Hammer curl</b><i>3 x 10-12</i><small>No swinging.</small></div>
 </div></details>
 
 <details><summary>Legs <span>quads, hamstrings, glutes, calves</span></summary><div>
-<div class="ex"><b>Goblet squat</b><i>3 x 8-12</i><small>Chest up, sit between your hips. Gym swap: leg press.</small></div>
+<div class="ex"><b>Goblet squat</b><i>3 x 8-12</i><small>Chest up, sit between your hips.<span class="sw gym"> Gym swap: leg press.</span></small></div>
 <div class="ex"><b>DB Romanian deadlift</b><i>3 x 8-10</i><small>Hips back, flat back, stop at a full hamstring stretch.</small></div>
-<div class="ex"><b>Hip thrust</b><i>3 x 8-12</i><small>Pause 1 second at the top. Gym swap: machine or barbell.</small></div>
+<div class="ex"><b>Hip thrust</b><i>3 x 8-12</i><small>Pause 1 second at the top.<span class="sw gym"> Gym swap: machine or barbell.</span><span class="sw home"> Home: back on the couch, DB on your hips.</span></small></div>
 <div class="ex"><b>Walking lunge</b><i>3 x 10 each</i><small>Long step, upright torso.</small></div>
 <div class="ex"><b>Calf raise</b><i>3 x 12-15</i><small>Pause at the bottom stretch.</small></div>
 </div></details>
 
 <p style="margin-top:20px"><b>How to add weight.</b> Each lift has a rep range. When you hit the top of the range on every set, go heavier next time. For the first two weeks, stop with 2 or 3 reps left in the tank so you can learn the movements. After that, stop 1 or 2 reps short on the big lifts. Rest 2 to 3 minutes between big lifts and about a minute between small ones.</p>
+</div>
 </section>
 
 <section>
@@ -127,13 +163,42 @@ footer{padding:26px 0 40px;color:var(--mute);font-size:13px;line-height:1.5}
 <h2>Want a plan built for you?</h2>
 <p>I’m taking a small group of people for a personal program and weekly check-ins. You get a plan matched to your goal, schedule and equipment, with calories and macros set for you. In return, I ask to use your results as a reference.</p>
 <p class="mute">Spots are limited. Apply and I’ll reach out if there’s a fit.</p>
-<a class="btn" href="apply.html">Apply for a personal plan</a>
+<a class="btn" href="https://forms.gle/cX56DHgS1UnQ3DgS8" target="_blank" rel="noopener">Apply for a personal plan</a>
 </section>
 
 <footer>This is general fitness information, not medical advice. Check with your doctor before starting a new program, and stop any exercise that causes sharp pain. If eating more brings up stress or anxiety, talk with a doctor or registered dietitian. 18 and over.</footer>
 </div>
 
 <script>
+/* ===== Email signups: where they get saved (filled in from your sign-up Google Form) ===== */
+var SIGNUP_FORM = {
+  action: "",      // https://docs.google.com/forms/d/e/XXXX/formResponse
+  emailEntry: "",  // entry.123456789
+  setupEntry: ""   // entry.987654321
+};
+(function(){
+var NAMES={apt:"apartment gym",gym:"full gym",home:"home"},LABEL={apt:"Apartment gym",gym:"Full gym",home:"Home"};
+var g=function(i){return document.getElementById(i)};
+function unlock(k){
+  document.body.setAttribute("data-setup",k);
+  document.querySelectorAll(".pname").forEach(function(e){e.textContent=NAMES[k]});
+  g("lock").hidden=true;g("days").hidden=false;g("signup").hidden=true;g("sOk").hidden=false;
+}
+try{var saved=localStorage.getItem("strongSetup");if(NAMES[saved])unlock(saved)}catch(e){}
+g("signup").addEventListener("submit",function(ev){
+  ev.preventDefault();
+  var k=g("setup").value,em=g("em").value.trim(),err=g("sErr");err.textContent="";
+  if(!k){err.textContent="Pick where you train.";g("setup").focus();return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)){err.textContent="Enter a real email so I can send it to you.";g("em").focus();return}
+  if(SIGNUP_FORM.action){
+    var b=new URLSearchParams();b.set(SIGNUP_FORM.emailEntry,em);b.set(SIGNUP_FORM.setupEntry,LABEL[k]);
+    try{fetch(SIGNUP_FORM.action,{method:"POST",mode:"no-cors",body:b}).catch(function(){})}catch(e){}
+  }
+  try{localStorage.setItem("strongSetup",k)}catch(e){}
+  unlock(k);
+  g("plan").scrollIntoView({behavior:"smooth",block:"start"});
+});
+})();
 (function(){
 var $=function(i){return document.getElementById(i)};
 $("go").addEventListener("click",function(){
